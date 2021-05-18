@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Rocky.Models.Car>
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Car List</h2>
+        </div>
+        <div class="col-6 text-right">
+            <a asp-controller="Car" asp-action="Create" class="btn btn-primary">
+                <i class="fas fa-plus"></i> &nbsp; Add new car
+            </a>
+        </div>
+    </div>
+
+    <br /><br />
+
+    @if (Model.Count() > 0)
+    {
+        <table class="table table-bordered table-striped" style="width100%">
+            <thead>
+                <tr>
+                    <th>
+                        Make
+                    </th>
+                    <th>
+                        Year
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var obj in Model)
+                {
+                <tr>
+                    <td width="30%">@obj.Make</td>
+                    <td width="30%">@obj.Year</td>
+                    <td width="40%" class="text-center">
+                        <div class="w-75 btn-group" role="group">
+                            <a asp-controller="Car" asp-route-Id="@obj.Id" asp-action="Edit" class="btn btn-primary mx-2">
+                                <i class="far fa-edit"></i> &nbsp;
+                            </a>
+                            <a asp-controller="Car" asp-route-Id="@obj.Id" asp-action="Delete" class="btn btn-danger mx-2">
+                                <i class="fas fa-trash-alt"></i> &nbsp;
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+                }
+            </tbody>
+
+
+        </table>
+    }
+    else
+    {
+        <p>No category exists.</p>
+    }
+
+</div>
